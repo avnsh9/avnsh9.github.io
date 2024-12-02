@@ -1,12 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
+
 <body>
-    hi
+    <nav class="navbar">
+        <div class="logo">Avinash Verma</div>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        <ul class="nav-links" id="nav-links">
+            <div><a href="#" onclick="showSection('home')">Home</a></div>
+            <div><a href="#" onclick="showSection('projects')">Projects</a></div>
+            <div><a href="#" onclick="showSection('cv')">CV</a></div>
+            <div><a href="#" onclick="showSection('gallery')">Gallery</a></div>
+            <div><a href="#" onclick="showSection('about')">About</a></div>
+        </ul>
+    </nav>
+    <div id="home" class="full-viewport-container">
+        <div class="yellow">
+            <h1>Welcome to My Page</h1>
+            <p>This is some text over a yellow background.</p>
+        </div>
+
+        <div class="sky-blue">
+            <h1>Scroll Down</h1>
+            <p>This is some text over a sky-blue background.</p>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+
+    <div id="projects" class="full-viewport-container hidden">
+
+        <section id="ExoplanetProject" class="ProjectType">
+            <h1>Unraveling the atmospheres of faraway worlds with adaptable planetary atmosphere model</h1>
+            <p class="author">Project Associate, Niser, India<br> May, 2023</p>
+            <div class="abstract">
+                <h2>Abstract</h2>
+                <p style="padding: 50px;">Are we alone? This is the age-old question that human civilization has been
+                    asking since
+                    time immemorial. In today's era, this question has evolved and now we ask if there are
+                    other planets with life-supporting conditions, and one of the most crucial part of this is the
+                    planet’s atmosphere. To date, more than 5500 exoplanets have been discovered and this
+                    number is increasing each day. Detection of an exoplanet is just the beginning of profiling
+                    and characterization of its atmosphere. Planets having an atmosphere impart this informa
+                    tion as a unique fingerprint on the starlight, that pass through it during transit. Different
+                    techniques are applied to extract this information from the observed spectra of an exo
+                    planet. Interpretation of these observed spectra requires planetary atmosphere models
+                    that can realistically simulate the atmospheric conditions and therefore provide con-
+                    straints on the chemical compositions, pressure-temperature (P-T) profiles, energy trans
+                    port, habitability, etc. in exoplanetary atmospheres. I present the development of SANSAR (Suite of
+                    Adaptable plaNetary atmoSphere model And Retrieval), an adaptable planetary atmosphere model
+                    designed to simulate various exoplanet types, including Earth-like and super-Earth terrestrial
+                    exoplanets, warm Neptunes, hot Jupiters, and other gas giants. I have specifically developed the
+                    transmission spectra component of this suite, which plays a crucial role in characterizing exoplanet
+                    atmospheres. Additionally, I have created an extensive opacity database that spans a wide range of
+                    temperatures (70 - 3000 K) and pressures ($7 \times 10^{-10}$ to 1000 bar), ensuring that SANSAR can
+                    accurately model diverse atmospheric conditions.</p>
+            </div>
+            <h3 style="margin: 50px; color: red;">But what is Transit Depth?</h3>
+            <div id="VideoForTransit" class="FigureExplainSBS">
+                <article>
+                    <div class="definition">When a planetary body transits its host star along the observer's line
+                        of
+                        sight, it blocks a
+                        portion of the stellar radiation, producing a transmission spectrum.
+
+                        Transit depth is given by
+                        \begin{equation}
+                        \delta_\lambda = \frac{F_{out,\lambda} - F_{in,\lambda}}{F_{out,\lambda}}
+                        \label{eq:transit depth}
+                        \end{equation}
+                        Here, $F_{\lambda}$ represents the intensity integrated over the solid angle subtended by
+                        the
+                        star as seen by the observer. Subscript 'out' and 'in' represent the flux before and during
+                        the
+                        transit respectively. This transit depth is given in terms of Planetary radius as,
+                        \begin{equation}
+                        \delta_\lambda =
+                        \frac{R_p^2}{R_\star^2}
+                        \label{eq:rprstar}
+                        \end{equation} </div>
+
+
+
+                    <p class="proof">In a plane parallel assumption,
+
+                        Neglecting planetary emissions and considering steller brightness to be uniform along the
+                        whole
+                        steller region.
+                        \begin{equation}
+                        F_{out,\lambda} = \frac{I_{\lambda}A_{out}}{D^2}\\
+                        F_{in,\lambda} = \frac{ I_{\lambda}A_{in}}{D^2}
+
+                        \end{equation}
+                        Where $A_{out(in)}$ is the area projected by the source before(during) transition onto the
+                        observer.
+
+
+                        \begin{align*}
+                        \delta_\lambda = \frac{A_{out} - A_{in}}{A_{out}}
+                        \end{align*}
+                        We know that
+                        \begin{align*}
+                        A_{out} = \pi R_{\star}^2 (\text{Area of steller disk}), \\
+                        A_{in} = \pi R_{\star}^2 - \pi R_{p}^2 (\text{Planetary disk area})
+                        \end{align*}
+
+                        Thus,
+                        \begin{equation}
+                        \delta_\lambda = \frac{\pi R_\star^2 - (\pi R_\star^2- \pi R_p^2)}{\pi R_\star^2} =
+                        \frac{R_p^2}{R_\star^2}
+                        \end{equation}
+
+                        Thus $R_p$ is a wavelength dependent radius of the planet</p>
+
+
+                    Taking absorption into consideration,
+
+                    \begin{equation}
+                    \delta = \frac{R_{low}^2 + 2\int_{R_{low}}^{R_{low}+H_{atm}} b (1-e^{-\tau(b)})db}{R_\star^2}
+                    \label{eq:td main}
+                    \end{equation}
+                    Here $R_{low}^2$ is the lowest radius below which no radiation can pass the atmosphere,
+                    $H_{atm}$ is the total height of the atmosphere and 'b' is the impact parameter of the ray
+                    passing through the atmosphere.
+                    This equation is a mathematical representation of addition of cross section area of each layer
+                    weighted by the amount of radiation they block.
+                    $\tau$ (or optical depth) in above equation is a characteristic of molecules and the atmospheric
+                    structure.
+                </article>
+                <div id="TransitVideo">
+                    <video width="537" height="302" autoplay loop muted>
+                        <source src="static/video/transitPlanet.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <footer style="text-align: center; font-size: 14px; color:black;">
+                        <p>Credit: NASA</p>
+                    </footer>
+                </div>
+
+
+
+            </div>
+            <h3 style="margin: 50px; color: red;">How do we model a Planetary Atmosphere?</h3>
+
+            <div id="ModelAtmosphere" class="FigureExplainSBS">
+                <div id="HydroEqui">
+
+
+                    <img src="static/images/hydrostatic_eq.png" alt="" style="width: 700px;">
+                    <footer style="text-align: center; font-size: 14px; color:black;">
+                        <p>Source: http://www.observatoiresolaire.eu</p>
+                    </footer>
+                </div>
+                <article>
+                    Hydrostatic equillibrium is achieved when preessure-gradient force balances the weight of atmosphere
+                    under the planetary gravity
+                </article>
+
+            </div>
+            <div id="SansarFlowChart" class="FigureExplainSBS">
+                <p>
+                    Here we show flow chart of SANSAR
+                </p>
+                <img src="static/images/sansar_flowchart.png" alt="">
+            </div>
+
+            <div id="TransmissionSpectraHD209" class="FigureExplainSBS">
+                <p>
+                    Here we show flow chart of SANSAR
+                </p>
+                <img src="static/images/hd209_grid_transparent.png" alt="">
+            </div>
+
+        </section>
+        <div id="SemesterProject" class="ProjectType">
+            <h1>Semester Project</h1>
+            <p class="author">Avinash Verma <br> Feb, 2021</p>
+            <div class="abstract">
+                <h2>Abstract</h2>
+                <p>Reinterpretation of the results published by experimental collaborations is
+                    vital for theorists to check their own BSM model against the published data.
+                    Often, background model used in an analysis has large number of parameters
+                    to model the uncertainties. To test the applicability of an analysis to a new
+                    BSM model requires dedicated reinterpretation (CheckMATE is one such tool).
+                    This means only a few signal hypothesis can be tested, given the limitation on
+                    computational resources. To overcome this, the idea of simplified likelihood was
+                    proposed.
+                    Simplified likelihood uses a reduced set of parameters to model the background
+                    contributions. It makes reinterpretation of the CMS experiments relatively easy.
+                    In this thesis, a procedure for constructing the simplified likelihood has been
+                    presented. Validation of this procedure has been done using toy data provided
+                    by the CMS. We also implemented a CMS search for dark matter and shows
+                    how this simplified likelihood framework can be used to set exclusions on the
+                    model parameters.</p>
+            </div>
+        </div>
+        <div id="MSProject" class="ProjectType">
+            <h1>MS Project</h1>
+            <p class="author">Avinash Verma <br> April, 2022</p>
+            <div class="abstract">
+                <h2>Abstract</h2>
+                <p>Reinterpretation of the results published by experimental collaborations is
+                    vital for theorists to check their own BSM model against the published data.
+                    Often, background model used in an analysis has large number of parameters
+                    to model the uncertainties. To test the applicability of an analysis to a new
+                    BSM model requires dedicated reinterpretation (CheckMATE is one such tool).
+                    This means only a few signal hypothesis can be tested, given the limitation on
+                    computational resources. To overcome this, the idea of simplified likelihood was
+                    proposed.
+                    Simplified likelihood uses a reduced set of parameters to model the background
+                    contributions. It makes reinterpretation of the CMS experiments relatively easy.
+                    In this thesis, a procedure for constructing the simplified likelihood has been
+                    presented. Validation of this procedure has been done using toy data provided
+                    by the CMS. We also implemented a CMS search for dark matter and shows
+                    how this simplified likelihood framework can be used to set exclusions on the
+                    model parameters.</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- CV Section -->
+    <div id="cv" class="full-viewport-container hidden">
+        <h1>Curriculum Vitae</h1>
+        <p>This is where your CV or resume information can be displayed.</p>
+    </div>
+
+    <!-- Gallery Section -->
+    <div id="gallery" class="full-viewport-container hidden">
+        <h1>Gallery</h1>
+        <p>Here is the gallery section showcasing various images or media.</p>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="full-viewport-container hidden">
+        <h1>About Us</h1>
+        <p>This is the About page content. You can add more details here.</p>
+    </div>
+
+    <script src="static/script.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+
 </body>
+
 </html>
