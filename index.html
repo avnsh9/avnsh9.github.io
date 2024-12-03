@@ -27,8 +27,12 @@
         </div>
 
         <div class="sky-blue">
-            <h1>Scroll Down</h1>
-            <p>This is some text over a sky-blue background.</p>
+            <h1>Computation</h1>
+            <p>Observations collected by instruments require robust physical models to extract meaningful parameters.
+                Whether it's data from a mobile camera, the Large Hadron Collider, or powerful telescopes, the need for
+                accurate modeling is universal. Advancements in computer technology have provided powerful tools to
+                simulate physical processes, enabling us to model these phenomena with greater efficiency and precision
+                than ever before. </p>
         </div>
     </div>
 
@@ -134,7 +138,7 @@
                     $\tau$ (or optical depth) in above equation is a characteristic of molecules and the atmospheric
                     structure.
                 </article>
-                <div id="TransitVideo">
+                <div id="TransitVideo" style="padding: 30px;">
                     <video width="537" height="302" autoplay loop muted>
                         <source src="static/video/transitPlanet.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -147,22 +151,73 @@
 
 
             </div>
-            <h3 style="margin: 50px; color: red;">How do we model a Planetary Atmosphere?</h3>
+            <h3 style="margin: 50px; color: red;">How do we model a Planetary atmosphere? </h3>
 
             <div id="ModelAtmosphere" class="FigureExplainSBS">
-                <div id="HydroEqui">
+                <div id="HydroEqui" style="padding: 30px;">
 
 
-                    <img src="static/images/hydrostatic_eq.png" alt="" style="width: 700px;">
+                    <img src="static/images/hydrostatic_eq.png" alt="" style="width: 5000px;">
                     <footer style="text-align: center; font-size: 14px; color:black;">
                         <p>Source: http://www.observatoiresolaire.eu</p>
                     </footer>
                 </div>
                 <article>
+                    A simplistic 1D atmosphere can be modeled considering the physical and chemical variation only in
+                    radial direction, However more advanced 3D models nowadays considers variation along all
+                    coordinates.
+                    For a 1D, we discritized the atmoshere in several layers with different pressures and solve for
+                    radial distribution of each layer by considering hydrostatic equillibrium.
                     Hydrostatic equillibrium is achieved when preessure-gradient force balances the weight of atmosphere
                     under the planetary gravity
+
+                    Equation governing atmosphere in hydro-static equilibrium given by;
+
+                    \begin{equation}
+                    \frac{dP}{dr} = -\rho(r)g(r),
+                    \label{eq:hydrostatic}
+                    \end{equation}
+                    where, $\frac{dP}{dr}$ is the change in pressure with change in radius, $\rho(r)$ is the mass
+                    density at radius r and
+                    $g(r)$ is the gravitational acceleration at radius r
+
+                    Here g(r) is given by
+
+                    \begin{equation}
+                    g(r) = \frac{g_{obs}R_p^2}{r^2},
+                    \label{eq:gobs}
+                    \end{equation}
+                    Where $g_{obs}$ is the measured gravitational constant calculated from observed radius and mass of
+                    the planet. Thus,
+                    \begin{equation}
+                    \frac{dP}{dr} = -\frac{\mu P }{k_B T } \frac{g_{obs} R_p^2}{r^2} ,\quad \text{$\mu$:mean mass}.
+                    \end{equation}
+
+                    To solve this differential equation, an initial radius and pressure pair, referred to as the
+                    reference radius and reference pressure, is required. This pair can be chosen arbitrarily; however,
+                    since the observed radius is often determined through other methods, it is common to use the
+                    observed radius as the reference radius and assign a reference pressure of 1 mbar or 10 mbar at this
+                    radius. In theory, any known radius-pressure pair can serve as a reference. During retrieval, either
+                    the reference radius or the reference pressure can be fixed, allowing the other to be retrieved.
+                    Solving the equation numerically gives us the thickness and radial profile of each layer used in
+                    calculating path length of a ray
+
+
                 </article>
 
+            </div>
+            <div id="SpectraCompute" class="FigureExplainSBS">
+                <div id="TransitTelescope">
+                    <img src="static/images/t.png" alt="" style="width: 1000px;">
+                    <footer style="text-align: center; font-size: 14px; color:black;">
+                        <p>Credit: ARIEL</p>
+                    </footer>
+                </div>
+                <article>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos quibusdam atque optio repellendus,
+                    illo harum eligendi, tempore reprehenderit facilis, deleniti vitae corporis sunt dicta officia ex
+                    doloremque? Perspiciatis, voluptatem quod!
+                </article>
             </div>
             <div id="SansarFlowChart" class="FigureExplainSBS">
                 <p>
